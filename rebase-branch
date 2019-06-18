@@ -1,0 +1,27 @@
+#!/bin/bash
+
+CURRENT_BRANCH=$(git branch 2> /dev/null | grep \* | cut -d ' ' -f2)
+BRANCH="${1:-$CURRENT_BRANCH}"
+MASTER="${2:-master}"
+
+if [ -z $BRANCH ]; then
+    echo '$BRANCH not set'
+    exit 1
+elif [ $BRANCH == $MASTER ]; then
+    echo "Not allowed to rebase $MASTER against $MASTER"
+    exit 1
+else
+    echo "Rebasing branch $BRANCH"
+fi
+
+read -p "Do you wish to rebase branch $BRANCH against $MASTER? " yn
+if [ $yn != "y" ]; then
+    exit 0
+fi
+
+git checkout $MASTER
+git pull
+git fetch origin $MASTER
+git checkout $BRANCH
+git status
+git rebase -i origin/$MASTER

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+CURRENT_BRANCH=$(git branch 2> /dev/null | grep \* | cut -d ' ' -f2)
+BRANCH="${1:-$CURRENT_BRANCH}"
+
+if [ -z $BRANCH ]; then
+    echo '$BRANCH not set'
+    exit 1
+elif [ $BRANCH == "master" ]; then
+    echo "Not allowed to force-push master"
+    exit 1
+else
+    read -p "Do you wish to force-push branch $BRANCH? " yn
+    if [ $yn == "y" ]; then
+        git push origin +$BRANCH
+    fi
+fi

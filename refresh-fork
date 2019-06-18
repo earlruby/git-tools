@@ -1,0 +1,20 @@
+#!/bin/bash -ex
+
+# Update my forked repo from its upstream repo
+
+# Stash current local changes
+git stash
+
+# Pull in any changes made on my fork
+git fetch origin master
+git pull origin master
+
+# Pull in any changes from upstream
+git fetch upstream --tags
+git pull upstream master
+
+# Push the upstream changes up to my fork
+git push origin master --tags
+
+# Re-apply my local stashed changes
+git stash apply
