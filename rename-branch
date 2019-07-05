@@ -1,0 +1,26 @@
+#!/bin/bash
+
+OLD_BRANCH_NAME="$1"
+NEW_BRANCH_NAME="$2"
+
+if [ -z $OLD_BRANCH_NAME ]; then
+    echo '$OLD_BRANCH_NAME not set'
+    exit 1
+elif [ -z $NEW_BRANCH_NAME ]; then
+    echo '$NEW_BRANCH_NAME not set'
+    exit 1
+elif [ $OLD_BRANCH_NAME == $NEW_BRANCH_NAME ]; then
+    echo "Can't use the same name"
+    exit 1
+fi
+
+read -p "Do you wish to rename branch $OLD_BRANCH_NAME to $NEW_BRANCH_NAME? " yn
+if [ $yn != "y" ]; then
+    exit 0
+fi
+
+git checkout $OLD_BRANCH_NAME
+git branch -m $NEW_BRANCH_NAME
+git push origin --delete $OLD_BRANCH_NAME
+git push --set-upstream origin $NEW_BRANCH_NAME
+

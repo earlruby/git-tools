@@ -35,3 +35,8 @@ defaults to "master".
 `refresh-fork` -- When executed inside of a forked repository, updates the forked repository
 based on the upstream repo's master branch.
 
+## rename-branch
+
+`rename-branch [old branch name] [new branch name]` -- Renames a branch locally
+and on the remote origin.
+
