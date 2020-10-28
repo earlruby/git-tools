@@ -18,11 +18,11 @@ limitations under the License.
 
 ## rebase-branch
 
-`rebase-branch [branchname] [master]` -- Rebase branch with `<branchname>` against
-`master` or another branch.
+`rebase-branch [branchname] [main]` -- Rebase branch with `<branchname>` against
+`main` or another branch.
 
-`[branchname]` defaults to the name of the current branch you're working on. `[master]`
-defaults to "master".
+`[branchname]` defaults to the name of the current branch you're working on. `[main]`
+defaults to "main".
 
 ## force-push
 
@@ -33,7 +33,7 @@ defaults to "master".
 ## refresh-fork
 
 `refresh-fork` -- When executed inside of a forked repository, updates the forked repository
-based on the upstream repo's master branch.
+based on the upstream repo's main branch.
 
 ## rename-branch
 
@@ -52,11 +52,11 @@ git reset origin/$branchname --hard
 
 That will wipe out any local changes you made and replace them with a copy from Github.
 
-If you have a development branch that has conflicts due to changes in the master branch first
-rebase your code against the current master branch:
+If you have a development branch that has conflicts due to changes in the main branch first
+rebase your code against the current main branch:
 
 ```
-rebase-branch $branchname $master
+rebase-branch $branchname $main
 ```
 
 At this point you'll get a warning that there are merge conflicts. Use `git status` to find out
@@ -70,7 +70,7 @@ You may get more warnings about merge conflicts. Repeat the cycle of `git status
 `git rebase --continue` until all of the conflicts are fixed.
 
 At this point your local copy of the `$branchname` branch will have all of the changes you made
-and all of the latest changes from $master. To update your PR:
+and all of the latest changes from $main. To update your PR:
 
 ```
 force-push $branchname

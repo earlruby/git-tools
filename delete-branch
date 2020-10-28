@@ -2,7 +2,7 @@
 
 CURRENT_BRANCH=$(git branch 2> /dev/null | grep \* | cut -d ' ' -f2)
 BRANCH="${1:-$CURRENT_BRANCH}"
-MASTER="${2:-master}"
+MASTER="${2:-main}"
 
 if [ -z $BRANCH ]; then
     echo '$BRANCH not set'

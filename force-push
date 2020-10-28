@@ -6,8 +6,8 @@ BRANCH="${1:-$CURRENT_BRANCH}"
 if [ -z $BRANCH ]; then
     echo '$BRANCH not set'
     exit 1
-elif [ $BRANCH == "master" ]; then
-    echo "Not allowed to force-push master"
+elif [ $BRANCH == "main" ]; then
+    echo "Not allowed to force-push main"
     exit 1
 else
     read -p "Do you wish to force-push branch $BRANCH? " yn
