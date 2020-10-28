@@ -2,13 +2,13 @@
 
 CURRENT_BRANCH=$(git branch 2> /dev/null | grep \* | cut -d ' ' -f2)
 BRANCH="${1:-$CURRENT_BRANCH}"
-MASTER="${2:-main}"
+MAIN="${2:-main}"
 
 if [ -z $BRANCH ]; then
     echo '$BRANCH not set'
     exit 1
-elif [ $BRANCH == $MASTER ]; then
-    echo "Not allowed to delete $MASTER"
+elif [ $BRANCH == $MAIN ]; then
+    echo "Not allowed to delete $MAIN"
     exit 1
 else
     echo "Deleting branch $BRANCH"
@@ -20,8 +20,8 @@ if [ $yn != "y" ]; then
 fi
 
 if [ $BRANCH == $CURRENT_BRANCH ]; then
-    echo "Switching to $MASTER branch in order to delete $BRANCH"
-    git checkout $MASTER
+    echo "Switching to $MAIN branch in order to delete $BRANCH"
+    git checkout $MAIN
 fi
 
 echo "Deleting remote branch $BRANCH"

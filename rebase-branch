@@ -2,26 +2,26 @@
 
 CURRENT_BRANCH=$(git branch 2> /dev/null | grep \* | cut -d ' ' -f2)
 BRANCH="${1:-$CURRENT_BRANCH}"
-MASTER="${2:-main}"
+MAIN="${2:-main}"
 
 if [ -z $BRANCH ]; then
     echo '$BRANCH not set'
     exit 1
-elif [ $BRANCH == $MASTER ]; then
-    echo "Not allowed to rebase $MASTER against $MASTER"
+elif [ $BRANCH == $MAIN ]; then
+    echo "Not allowed to rebase $MAIN against $MAIN"
     exit 1
 else
     echo "Rebasing branch $BRANCH"
 fi
 
-read -p "Do you wish to rebase branch $BRANCH against $MASTER? " yn
+read -p "Do you wish to rebase branch $BRANCH against $MAIN? " yn
 if [ $yn != "y" ]; then
     exit 0
 fi
 
-git checkout $MASTER
+git checkout $MAIN
 git pull
-git fetch origin $MASTER
+git fetch origin $MAIN
 git checkout $BRANCH
 git status
-git rebase -i origin/$MASTER
+git rebase -i origin/$MAIN
