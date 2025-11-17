@@ -1,0 +1,6 @@
+#!/bin/bash -ex
+
+# Refresh submodules defined in .gitmodules based on the current SHAs. (Do not pull in "latest" versions)
+
+git submodule update --init --recursive
+

@@ -40,6 +40,13 @@ based on the upstream repo's main branch.
 `rename-branch [old branch name] [new branch name]` -- Renames a branch locally
 and on the remote origin.
 
+## refresh-submodules
+
+`refresh-submodules` -- Refreshes the submodules defined in `.gitmodules` based on the
+currently-defined SHAs. In other words, if someone on your team has added a new module
+or updated the SHA of a submodule this will update your local submodules to match. It
+does not pull in "latest" versions of submodules.
+
 # Rebasing and fixing conflicts
 
 If you haven't done a lot of rebasing and fixing conflicts in Git I recommend that you make a
